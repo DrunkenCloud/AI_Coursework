@@ -1,8 +1,15 @@
-# Search Algorithms
+# AI Courseworks
+
+This repository contains multiple courseworks for my AI module.
+
+Currently, it contains the following coursework:
+*   **Search_Algorithms**: Implementations of various search algorithms in C++. This can be found in the `Search_Algorithms` folder.
+
+## Search Algorithms
 
 This repository contains implementations of various search algorithms in C++.
 
-## Compilation
+### Compilation
 
 To compile all the C++ files, you can use the provided `Makefile`.
 
@@ -26,7 +33,7 @@ For example, to compile `1_british_museum.cpp`, you would run:
 g++ -std=c++17 -Wall 1_british_museum.cpp -o 1_british_museum.out
 ```
 
-## Running the Executables
+### Running the Executables
 
 To run an executable, you can use the `run-%` rule in the `Makefile`. For example, to run `1_british_museum.out`, you would run:
 
@@ -52,7 +59,7 @@ For example, to run `1_british_museum.out`, you would run:
 ./1_british_museum.out
 ```
 
-## Implemented Algorithms
+### Implemented Algorithms
 
 The following search algorithms are implemented in this repository:
 
