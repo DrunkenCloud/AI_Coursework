@@ -14,8 +14,6 @@ bool beam_search(unordered_map<char, vector<pair<char, int>>>& graph,
     priority_queue<pair<char, vector<char>>, vector<pair<char, vector<char>>>, decltype(compare_nodes)> current_level(compare_nodes);
     current_level.push({start, {start}});
 
-    unordered_map<char, bool> visited;
-
     while (!current_level.empty()) {
         priority_queue<pair<char, vector<char>>, vector<pair<char, vector<char>>>, decltype(compare_nodes)> next_level(compare_nodes);
 
@@ -36,11 +34,9 @@ bool beam_search(unordered_map<char, vector<pair<char, int>>>& graph,
             }
 
             for (auto& neighbor : graph.at(current_id)) {
-                if (visited.find(neighbor.first) == visited.end()) {
-                    auto new_path = current_path;
-                    new_path.push_back(neighbor.first);
-                    next_level.push({neighbor.first, new_path});
-                }
+                auto new_path = current_path;
+                new_path.push_back(neighbor.first);
+                next_level.push({neighbor.first, new_path});
             }
         }
 
@@ -52,7 +48,6 @@ bool beam_search(unordered_map<char, vector<pair<char, int>>>& graph,
 
         for (const auto& node : pruned_nodes) {
             current_level.push(node);
-            visited[node.first] = true;
         }
 
         if (current_level.empty()) {

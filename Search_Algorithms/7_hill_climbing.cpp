@@ -5,7 +5,6 @@ using namespace std;
 bool dfs_hill(unordered_map<char, vector<pair<char, int>>>& graph,
               unordered_map<char, int>& hill_approx,
               char current_node, char goal,
-              unordered_set<char>& visited,
               vector<char>& path) 
 {
     path.push_back(current_node);
@@ -13,8 +12,6 @@ bool dfs_hill(unordered_map<char, vector<pair<char, int>>>& graph,
     if (current_node == goal) {
         return true;
     }
-
-    visited.insert(current_node);
 
     vector<pair<char, int>> neighbors = graph[current_node];
     sort(neighbors.begin(), neighbors.end(),
@@ -24,10 +21,8 @@ bool dfs_hill(unordered_map<char, vector<pair<char, int>>>& graph,
 
     for (auto& neighbor : neighbors) {
         char next_node = neighbor.first;
-        if (!visited.count(next_node)) {
-            if (dfs_hill(graph, hill_approx, next_node, goal, visited, path)) {
-                return true;
-            }
+        if (dfs_hill(graph, hill_approx, next_node, goal, path)) {
+            return true;
         }
     }
 
@@ -49,10 +44,9 @@ int main() {
         {'S', 10}, {'A', 7}, {'B', 6}, {'C', 7}, {'D', 5}, {'E', 6}, {'G', 0}
     };
 
-    unordered_set<char> visited;
     vector<char> path;
 
-    if (dfs_hill(graph, hill_approx, 'S', 'G', visited, path)) {
+    if (dfs_hill(graph, hill_approx, 'S', 'G', path)) {
         cout << "Path found: ";
         for (char node : path) {
             cout << node << " ";
