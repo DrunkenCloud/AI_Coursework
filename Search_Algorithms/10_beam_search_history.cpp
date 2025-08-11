@@ -4,7 +4,7 @@ using namespace std;
 
 bool beam_search(unordered_map<char, vector<pair<char, int>>>& graph,
                  unordered_map<char, int>& hill_approx,
-                 char start, char goal, int beam_width)
+                 char start, char goal, size_t beam_width)
 {
     unordered_set<char> visited;
     auto compare_nodes = [&](const pair<char, vector<char>>& a, const pair<char, vector<char>>& b) {
@@ -78,7 +78,7 @@ int main() {
         {'S', 10}, {'A', 7}, {'B', 6}, {'C', 7}, {'D', 5}, {'E', 6}, {'G', 0}
     };
 
-    int beam_width = 2;
+    size_t beam_width = 2;
     if (!beam_search(graph, hill_approx, 'S', 'G', beam_width)) {
         cout << "Goal not reachable." << endl;
     }

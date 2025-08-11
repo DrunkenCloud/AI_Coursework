@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -std=c++14 -Wall
+CXXFLAGS = -std=c++17 -Wall
 
 SRCS = $(wildcard *.cpp)
 BINS = $(patsubst %.cpp,%,$(SRCS))
@@ -8,7 +8,7 @@ all: $(BINS)
 	@echo "Compilation complete. Executables created: $(BINS)"
 
 %: %.cpp
-	$(CXX) $(CXXFLAGS) $< -o $@
+	$(CXX) $(CXXFLAGS) $< -o $@.out
 
 .PHONY: run
 run: $(firstword $(BINS))
